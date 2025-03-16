@@ -20,7 +20,7 @@ import json
 import hashlib
 
 from modules import sd_samplers, shared, script_callbacks, errors
-from modules.paths_internal import roboto_ttf_file
+from modules.paths_internal import default_ttf_file
 from modules.shared import opts
 
 LANCZOS = (Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else Image.LANCZOS)
@@ -28,9 +28,9 @@ LANCZOS = (Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else Image.L
 
 def get_font(fontsize: int):
     try:
-        return ImageFont.truetype(opts.font or roboto_ttf_file, fontsize)
+        return ImageFont.truetype(opts.font or default_ttf_file, fontsize)
     except Exception:
-        return ImageFont.truetype(roboto_ttf_file, fontsize)
+        return ImageFont.truetype(default_ttf_file, fontsize)
 
 
 def image_grid(imgs, batch_size=1, rows=None):
